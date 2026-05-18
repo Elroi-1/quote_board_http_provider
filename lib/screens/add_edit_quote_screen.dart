@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quote_board_bloc/screens/home_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:quote_board_http_provider/screens/home_screen.dart';
 import '../models/quote_model.dart';
-import '../bloc/quote_bloc.dart';
-import '../bloc/quote_event.dart';
+import '../providers/quote_provider.dart';
 import '../widgets/app_bar.dart';
 
 class AddEditQuoteScreen extends StatefulWidget {
@@ -36,9 +35,9 @@ class _AddEditQuoteScreenState extends State<AddEditQuoteScreen> {
     );
 
     if (widget.quote == null) {
-      context.read<QuoteBloc>().add(AddQuoteEvent(quote));
+      context.read<QuoteProvider>().addQuote(quote);
     } else {
-      context.read<QuoteBloc>().add(UpdateQuoteEvent(quote));
+      context.read<QuoteProvider>().updateQuote(quote);
     }
 
     if (!mounted) return;
