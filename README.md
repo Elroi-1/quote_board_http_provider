@@ -99,6 +99,10 @@ lib/
 ![Home Screen](screenshots/home.png)
 ![Home Screen](screenshots/homedelet.png)
 
+
+### Error Screen
+![Home Screen](screenshots/homeerro.png)
+
 ## License
 
 This project is licensed under the terms of the MIT license.
