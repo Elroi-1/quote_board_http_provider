@@ -40,7 +40,42 @@ class _HomeScreenState extends State<HomeScreen> {
           }
 
           if (provider.errorMessage != null && provider.quotes.isEmpty) {
-            return Center(child: Text('Error: ${provider.errorMessage}'));
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.wifi_off_rounded,
+                      size: 64,
+                      color: Colors.redAccent,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Failed to load quotes',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Could not connect to the server.\nPlease check your internet connection and try again.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white54, fontSize: 13),
+                    ),
+                    const SizedBox(height: 24),
+                    ElevatedButton.icon(
+                      onPressed: () => provider.fetchQuotes(),
+                      icon: Icon(Icons.refresh),
+                      label: Text('Retry'),
+                    ),
+                  ],
+                ),
+              ),
+            );
           }
 
           final quotes = provider.quotes;
