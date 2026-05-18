@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Icon(
                       Icons.wifi_off_rounded,
                       size: 64,
-                      color: Colors.redAccent,
+                      color: AppColors.delete,
                     ),
                     const SizedBox(height: 16),
                     Text(
@@ -68,6 +68,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     const SizedBox(height: 24),
                     ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.surface,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 12,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
                       onPressed: () => provider.fetchQuotes(),
                       icon: Icon(Icons.refresh),
                       label: Text('Retry'),
