@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quote_board_http_provider/screens/home_screen.dart';
-import '../models/quote_model.dart';
-import '../providers/quote_provider.dart';
-import '../widgets/app_bar.dart';
+import 'package:quote_board_http_provider/features/quotes/data/models/quote.dart';
+import 'package:quote_board_http_provider/features/quotes/presentation/providers/quote_provider.dart';
+import 'package:quote_board_http_provider/features/quotes/presentation/screens/home_screen.dart';
+import 'package:quote_board_http_provider/widgets/app_bar.dart';
 
 class AddEditQuoteScreen extends StatefulWidget {
   final Quote? quote;
@@ -42,7 +42,6 @@ class _AddEditQuoteScreenState extends State<AddEditQuoteScreen> {
 
     if (!mounted) return;
 
-    // Explicitly navigate to the home screen as requested
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -65,7 +64,6 @@ class _AddEditQuoteScreenState extends State<AddEditQuoteScreen> {
             child: Column(
               children: [
                 SizedBox(height: 20),
-
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: TextField(
@@ -76,9 +74,7 @@ class _AddEditQuoteScreenState extends State<AddEditQuoteScreen> {
                     ),
                   ),
                 ),
-
                 SizedBox(height: 20),
-
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: TextField(
@@ -89,11 +85,8 @@ class _AddEditQuoteScreenState extends State<AddEditQuoteScreen> {
                     ),
                   ),
                 ),
-
                 SizedBox(height: 20),
-
                 ElevatedButton(onPressed: saveQuote, child: const Text("Save")),
-
                 SizedBox(height: 20),
               ],
             ),

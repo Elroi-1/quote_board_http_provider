@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import '../models/quote_model.dart';
-import '../service/quote_service.dart';
+
+import '../../data/models/quote.dart';
+import '../../data/repositories/quote_repository.dart';
 
 class QuoteProvider extends ChangeNotifier {
-  final QuoteService _quoteService = QuoteService();
+  final QuoteRepository _quoteRepository;
+
+  QuoteProvider({QuoteRepository? quoteRepository})
+      : _quoteRepository = quoteRepository ?? QuoteRepository();
 
   List<Quote> _quotes = [];
   bool _isLoading = false;
@@ -19,7 +23,7 @@ class QuoteProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      _quotes = await _quoteService.getQuotes();
+      _quotes = await _quoteRepository.getQuotes();
     } catch (e) {
       _errorMessage = e.toString();
     } finally {
@@ -29,17 +33,17 @@ class QuoteProvider extends ChangeNotifier {
   }
 
   Future<void> addQuote(Quote quote) async {
-    await _quoteService.addQuote(quote);
+    await _quoteRepository.addQuote(quote);
     await fetchQuotes();
   }
 
   Future<void> updateQuote(Quote quote) async {
-    await _quoteService.updateQuote(quote);
+    await _quoteRepository.updateQuote(quote);
     await fetchQuotes();
   }
 
   Future<void> deleteQuote(int id) async {
-    await _quoteService.deleteQuote(id);
+    await _quoteRepository.deleteQuote(id);
     await fetchQuotes();
   }
 }
